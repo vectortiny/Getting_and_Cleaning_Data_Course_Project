@@ -130,10 +130,10 @@ tidy_data <-
     cols = contains(c("mean()", "std()"))
     , names_to = "feature"
     , values_to = "average"
-  )
+  ) %>%
+  separate(feature, into = c("signal", "measurement", "axis"), sep = "-")
 
 #########################################################
 # Prepare to upload the tidy data set created in step 5 #
 #########################################################
 write.table(tidy_data, file = "tidy_data.txt", row.names = FALSE)
-
